@@ -1,4 +1,4 @@
-const COLORS = ["#c2410c", "#b45309", "#4d7c0f", "#0f766e", "#1d4ed8", "#7c3aed", "#be185d", "#9f1239", "#0e7490", "#a16207"];
+const COLORS = ["#d4507a", "#7488e0", "#9b6bd6", "#e07a5f", "#3f9c8f", "#c0609e", "#5b8fd1", "#d9822b", "#8a6fd1", "#2f8a68"];
 
 export function Avatar({ name, email, size }: { name?: string | null; email?: string; size?: "sm" | "lg" }) {
   const label = (name || email || "?").trim();

@@ -1,4 +1,4 @@
-# Circle Letter ✉
+# Blink Loop ✉
 
 A monthly newsletter written by you and your friends. Each month:
 
@@ -21,7 +21,7 @@ Sign-in is passwordless (email links). Works on phones and desktops, light and d
 ### 1. Put the code on GitHub
 Create an empty repo on github.com, then from this folder:
 ```bash
-git remote add origin https://github.com/YOUR-NAME/circle-letter.git
+git remote add origin https://github.com/YOUR-NAME/letter-loop.git
 git push -u origin main
 ```
 
@@ -35,17 +35,17 @@ git push -u origin main
 **Option A — Gmail (easiest, no domain needed).** Use a Gmail account for the app:
 1. Turn on 2-Step Verification for that Google account.
 2. Create an App Password at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
-3. Use these env vars: `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_USER=you@gmail.com`, `SMTP_PASS=<the 16-char app password>`, `EMAIL_FROM=Circle Letter <you@gmail.com>`.
+3. Use these env vars: `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_USER=you@gmail.com`, `SMTP_PASS=<the 16-char app password>`, `EMAIL_FROM=Blink Loop <you@gmail.com>`.
    (Gmail allows ~500 emails/day — plenty for friend groups.)
 
-**Option B — Resend (best deliverability, needs a domain you own).** Sign up at resend.com, verify your domain, create an API key, and set `RESEND_API_KEY` and `EMAIL_FROM=Circle Letter <hello@yourdomain.com>`. Without a verified domain, Resend only delivers to your own address.
+**Option B — Resend (best deliverability, needs a domain you own).** Sign up at resend.com, verify your domain, create an API key, and set `RESEND_API_KEY` and `EMAIL_FROM=Blink Loop <hello@yourdomain.com>`. Without a verified domain, Resend only delivers to your own address.
 
 ### 4. Add the remaining environment variables
 In Vercel → **Settings → Environment Variables**:
 
 | Name | Value |
 |---|---|
-| `APP_URL` | Your site URL, e.g. `https://circle-letter.vercel.app` (no trailing slash) |
+| `APP_URL` | Your site URL, e.g. `https://letter-loop.vercel.app` (no trailing slash) |
 | `CRON_SECRET` | Any long random string (Vercel Cron uses it automatically) |
 | email vars | from step 3 |
 

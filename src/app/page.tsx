@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import friends from "@/assets/friends.jpg";
 import { redirect } from "next/navigation";
 import { currentUser } from "@/lib/auth";
 import { query, type Issue, type Loop, type User } from "@/lib/db";
@@ -47,12 +49,16 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ e
 
   return (
     <div className="container page">
-      <div className="row between" style={{ marginBottom: 24 }}>
-        <div>
-          <p className="eyebrow">Hi, {user.name?.split(" ")[0]}</p>
-          <h1 style={{ marginTop: 6 }}>Your groups</h1>
+      <div className="photo-banner">
+        <Image src={friends} alt="" priority placeholder="blur" sizes="(min-width: 960px) 928px, 100vw" />
+        <div className="caption">
+          <p className="eyebrow">Hi, {user.name?.split(" ")[0]} ♡</p>
+          <h1>Blink Loop</h1>
         </div>
-        <Link href="/loops/new" className="btn">+ New group</Link>
+      </div>
+      <div className="row between" style={{ marginBottom: 20 }}>
+        <h2>Your groups</h2>
+        <Link href="/loops/new" className="btn small">+ New group</Link>
       </div>
 
       {error === "not-a-member" && (
@@ -109,42 +115,34 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ e
 
 function Landing() {
   return (
-    <div className="container">
-      <section className="hero">
-        <p className="eyebrow">A monthly newsletter, written together</p>
-        <h1>Stay close to the people you love.</h1>
+    <div className="container welcome">
+      <div className="photo-hero">
+        <Image
+          src={friends}
+          alt="All of us on graduation day"
+          priority
+          placeholder="blur"
+          sizes="(min-width: 960px) 928px, 100vw"
+        />
+        <div className="caption">
+          <h1>Blink Loop</h1>
+          <p>Our monthly letter to each other.</p>
+        </div>
+      </div>
+      <div className="card welcome-card">
         <p className="lead">
-          Once a month your friends suggest questions, everyone answers with words and photos, and we deliver it all as one
-          beautiful newsletter to every inbox.
+          Every month we each answer a few questions, add some photos, and it all comes back to everyone as one letter.
         </p>
-        <div className="row">
-          <Link href="/login" className="btn">Start a group — it's free</Link>
-          <a href="#how" className="btn secondary">How it works</a>
+        <ol className="how">
+          <li><span className="n">1</span><span>Everyone suggests questions they want to ask the group.</span></li>
+          <li><span className="n">2</span><span>Everyone answers — with words, photos, or both.</span></li>
+          <li><span className="n">3</span><span>On letter day, it lands in everyone's inbox.</span></li>
+        </ol>
+        <div style={{ marginTop: 24 }}>
+          <Link href="/login" className="btn block">Sign in</Link>
         </div>
-        <div className="envelope" aria-hidden>
-          <p className="eyebrow" style={{ marginBottom: 10 }}>The Old Roommates · Issue #12</p>
-          <p className="q">What's something that made you laugh this month?</p>
-          <div className="a"><Avatar name="Maya Chen" email="maya" size="sm" /><p>My toddler told the mail carrier that our cat “does taxes.”</p></div>
-          <div className="a"><Avatar name="Sam Ortiz" email="sam" size="sm" /><p>I got lost in IKEA for forty minutes. Again. Photo evidence attached.</p></div>
-        </div>
-      </section>
-      <section id="how" className="page">
-        <h2 style={{ textAlign: "center", marginBottom: 28 }}>How it works</h2>
-        <div className="grid three steps">
-          <div className="card flat step">
-            <h3>Everyone asks</h3>
-            <p className="muted" style={{ marginTop: 6 }}>Each month we email the group to suggest questions they're curious about.</p>
-          </div>
-          <div className="card flat step">
-            <h3>Everyone answers</h3>
-            <p className="muted" style={{ marginTop: 6 }}>Then everyone gets the final list and answers from their phone or computer — with photos.</p>
-          </div>
-          <div className="card flat step">
-            <h3>Everyone reads</h3>
-            <p className="muted" style={{ marginTop: 6 }}>On issue day, all the answers arrive as one newsletter. Comment, reply, and catch up.</p>
-          </div>
-        </div>
-      </section>
+        <p className="small muted" style={{ marginTop: 12 }}>Use the email address you were invited with.</p>
+      </div>
     </div>
   );
 }

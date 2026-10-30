@@ -93,8 +93,8 @@ function firstName(u: User): string {
 }
 
 const footer = (loop: Loop, link: string) =>
-  `You're getting this because you're in <strong>${esc(loop.name)}</strong> on Circle Letter. ` +
-  `<a href="${esc(link)}" style="color:#8a7d6e">Manage or leave this group</a>.`;
+  `You're getting this because you're in <strong>${esc(loop.name)}</strong> on Blink Loop. ` +
+  `<a href="${esc(link)}" style="color:#8b8098">Manage or leave this group</a>.`;
 
 // ---- Phase transitions --------------------------------------------------------------
 
@@ -167,7 +167,7 @@ async function sendAnswerCall(loop: Loop, issue: Issue): Promise<void> {
   const list = qs
     .map(
       (q, i) =>
-        `<tr><td style="padding:10px 0;border-top:1px solid #efe6d6;font-family:Georgia,serif;font-size:17px;color:#2b2118"><span style="color:#c2410c;font-weight:700">${i + 1}.</span> ${esc(q.body)}</td></tr>`,
+        `<tr><td style="padding:10px 0;border-top:1px solid #f4e6ec;font-family:Georgia,serif;font-size:17px;color:#2d2438"><span style="color:#d4507a;font-weight:700">${i + 1}.</span> ${esc(q.body)}</td></tr>`,
     )
     .join("");
   const emails: Email[] = [];
@@ -265,13 +265,13 @@ export async function publishIssue(loop: Loop, issue: Issue): Promise<void> {
   const sections = answered
     .map(
       (c) => `
-      <h2 style="font-family:Georgia,serif;font-size:21px;line-height:1.3;margin:32px 0 8px;color:#2b2118;border-top:2px solid #efe6d6;padding-top:24px">${esc(c.question.body)}</h2>
+      <h2 style="font-family:Georgia,serif;font-size:21px;line-height:1.3;margin:32px 0 8px;color:#2d2438;border-top:2px solid #f4e6ec;padding-top:24px">${esc(c.question.body)}</h2>
       ${c.answers
         .map(
           (a) => `
         <div style="margin:18px 0">
-          <div style="font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;color:#c2410c;margin-bottom:4px">${esc(a.user.name || a.user.email)}</div>
-          ${a.body.trim() ? `<div style="font-family:Georgia,serif;font-size:16px;line-height:1.6;color:#2b2118;white-space:pre-wrap">${esc(a.body.trim())}</div>` : ""}
+          <div style="font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;color:#d4507a;margin-bottom:4px">${esc(a.user.name || a.user.email)}</div>
+          ${a.body.trim() ? `<div style="font-family:Georgia,serif;font-size:16px;line-height:1.6;color:#2d2438;white-space:pre-wrap">${esc(a.body.trim())}</div>` : ""}
           ${a.photos
             .map(
               (url) =>

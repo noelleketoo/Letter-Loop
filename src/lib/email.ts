@@ -13,7 +13,7 @@ export function esc(s: string): string {
 }
 
 function fromAddress(): string {
-  return process.env.EMAIL_FROM || process.env.SMTP_USER || "Circle Letter <onboarding@resend.dev>";
+  return process.env.EMAIL_FROM || process.env.SMTP_USER || "Blink Loop <onboarding@resend.dev>";
 }
 
 export function emailProvider(): "resend" | "smtp" | "none" {
@@ -89,23 +89,23 @@ type LayoutOpts = {
 
 export function layout(o: LayoutOpts): string {
   const btn = o.button
-    ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:28px 0"><tr><td style="border-radius:999px;background:#c2410c">
+    ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:28px 0"><tr><td style="border-radius:999px;background:#d4507a">
         <a href="${esc(o.button.url)}" style="display:inline-block;padding:14px 28px;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:999px">${esc(o.button.label)}</a>
       </td></tr></table>`
     : "";
   return `<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><meta charset="utf-8"></head>
-<body style="margin:0;padding:0;background:#f6f1e7">
+<body style="margin:0;padding:0;background:#fcf3f5">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(o.preheader)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f1e7"><tr><td align="center" style="padding:24px 12px">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fffdf8;border:1px solid #e7dcc8;border-radius:16px">
-    <tr><td style="padding:32px 28px 8px;font-family:Georgia,'Times New Roman',serif;color:#2b2118">
-      <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;font-weight:700">✉ Circle Letter</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fcf3f5"><tr><td align="center" style="padding:24px 12px">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border:1px solid #f1e2e8;border-radius:16px">
+    <tr><td style="padding:32px 28px 8px;font-family:Georgia,'Times New Roman',serif;color:#2d2438">
+      <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#d4507a;font-weight:700">◎ Blink Loop</div>
       <h1 style="font-size:28px;line-height:1.25;margin:14px 0 12px;font-weight:600">${esc(o.heading)}</h1>
-      <div style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#4a3f35">${o.intro}</div>
+      <div style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#514662">${o.intro}</div>
       ${btn}
       ${o.body ?? ""}
     </td></tr>
-    <tr><td style="padding:8px 28px 28px;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.5;color:#8a7d6e">
+    <tr><td style="padding:8px 28px 28px;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.5;color:#8b8098">
       ${o.footer ?? ""}
     </td></tr>
   </table>
@@ -123,15 +123,15 @@ export function formatDate(dateStr: string): string {
 export function loginEmail(to: string, link: string): Email {
   return {
     to,
-    subject: "Your Circle Letter sign-in link",
+    subject: "Your Blink Loop sign-in link",
     html: layout({
       preheader: "Tap to sign in — the link expires in an hour.",
-      heading: "Sign in to Circle Letter",
+      heading: "Sign in to Blink Loop",
       intro: "Tap the button below to sign in. This link works once and expires in an hour.",
       button: { label: "Sign in", url: link },
       footer: "If you didn't ask for this, you can safely ignore this email.",
     }),
-    text: `Sign in to Circle Letter:\n${link}\n\nThis link works once and expires in an hour.`,
+    text: `Sign in to Blink Loop:\n${link}\n\nThis link works once and expires in an hour.`,
   };
 }
 
@@ -147,6 +147,6 @@ export function inviteEmail(to: string, inviter: string, loopName: string, link:
       button: { label: `Join ${loopName}`, url: link },
       footer: "This invite link is good for 14 days.",
     }),
-    text: `${inviter} invited you to join "${loopName}" on Circle Letter, a monthly newsletter with friends.\n\nJoin here: ${link}`,
+    text: `${inviter} invited you to join "${loopName}" on Blink Loop, a monthly newsletter with friends.\n\nJoin here: ${link}`,
   };
 }

@@ -10,7 +10,7 @@ export default async function NewLoop() {
   return (
     <div className="container narrow page">
       <p className="eyebrow">New group</p>
-      <h1 style={{ marginTop: 6, marginBottom: 20 }}>Start a circle letter</h1>
+      <h1 style={{ marginTop: 6, marginBottom: 20 }}>Start a new loop</h1>
       <ActionForm action={createLoop} className="card stack" hideMessage>
         <label className="field">
           <span>Group name</span>
